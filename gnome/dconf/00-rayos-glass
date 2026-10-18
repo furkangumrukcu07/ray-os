@@ -2,7 +2,7 @@
 
 [org/gnome/shell]
 enabled-extensions=['blur-my-shell@aunetx', 'dash-to-dock@micxgx.gmail.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'appindicatorsupport@rgcjonas.gmail.com']
-favorite-apps=['org.gnome.Nautilus.desktop', 'firefox-esr.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Settings.desktop', 'calamares.desktop']
+favorite-apps=['opera.desktop', 'org.gnome.Nautilus.desktop', 'vlc.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Settings.desktop', 'calamares.desktop']
 
 [org/gnome/shell/extensions/blur-my-shell]
 brightness=0.88

@@ -7,7 +7,7 @@ echo "=== [2/4] Installing GNOME Shell and Frosted Glass Extension Stack ==="
 
 apt-get update
 
-# Install GNOME Minimal Core, GDM3 Display Manager, and core tools
+# Install GNOME Minimal Core, GDM3 Display Manager, and essential tools
 apt-get install -y --no-install-recommends \
     gnome-core \
     gdm3 \
@@ -18,15 +18,35 @@ apt-get install -y --no-install-recommends \
     nautilus \
     eog \
     gedit \
+    evince \
+    file-roller \
+    gnome-system-monitor \
+    gnome-disk-utility \
+    vlc \
+    transmission-gtk \
     fonts-inter \
     fonts-jetbrains-mono \
-    firefox-esr \
     calamares \
     calamares-settings-debian \
     gparted \
     dconf-cli \
     plymouth \
-    plymouth-themes
+    plymouth-themes \
+    gpg
+
+# Setup Official Opera Browser Repository & Install Latest Opera Stable
+echo "Adding Opera official repository..."
+mkdir -p /usr/share/keyrings
+wget -qO- https://deb.opera.com/archive.key | gpg --dearmor | tee /usr/share/keyrings/opera-browser.gpg > /dev/null
+echo "deb [signed-by=/usr/share/keyrings/opera-browser.gpg] https://deb.opera.com/opera-stable/ stable non-free" | tee /etc/apt/sources.list.d/opera-stable.list
+apt-get update
+# Pre-seed debconf so Opera doesn't block with interactive debconf prompt during apt install
+echo "opera-stable opera-stable/add-deb-source boolean false" | debconf-set-selections
+apt-get install -y opera-stable
+
+# Set Opera as default web browser
+update-alternatives --set x-www-browser /usr/bin/opera || true
+xdg-settings set default-web-browser opera.desktop 2>/dev/null || true
 
 # Configure GDM3 Auto-login for Live session
 mkdir -p /etc/gdm3
