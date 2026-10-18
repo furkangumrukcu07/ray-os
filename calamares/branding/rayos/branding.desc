@@ -17,6 +17,7 @@ strings:
     supportUrl:          "https://rayplayer.app"
     knownIssuesUrl:      "https://rayplayer.app"
     releaseNotesUrl:     "https://rayplayer.app"
+    donateUrl:           "https://rayplayer.app"
 
 images:
     productLogo:         "ray_logo.png"

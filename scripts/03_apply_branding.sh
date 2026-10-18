@@ -11,6 +11,11 @@ cp -f "$BUILD_DIR/config/lsb-release" /etc/lsb-release
 cp -f "$BUILD_DIR/config/issue" /etc/issue
 cp -f "$BUILD_DIR/config/issue.net" /etc/issue.net
 
+# Privacy Policy Documentation
+mkdir -p /usr/share/doc/rayos
+cp -f "$BUILD_DIR/PRIVACY_POLICY.md" /usr/share/doc/rayos/PRIVACY_POLICY.md
+chmod 644 /usr/share/doc/rayos/PRIVACY_POLICY.md
+
 # 2. Wallpapers
 mkdir -p /usr/share/backgrounds/rayos
 cp -rf "$BUILD_DIR/assets/wallpapers/"* /usr/share/backgrounds/rayos/
@@ -74,6 +79,7 @@ StartupNotify=true
 Categories=System;
 EOF
 chmod +x /home/rayos/Desktop/calamares.desktop
+cp -f "$BUILD_DIR/PRIVACY_POLICY.md" /home/rayos/Desktop/Gizlilik_Politikasi.md
 chown -R rayos:rayos /home/rayos/Desktop
 
 # 9. Fastfetch Custom Config
