@@ -43,6 +43,8 @@ show-apps-at-top=true
 custom-theme-shrink=true
 running-indicator-style='DOTS'
 running-indicator-dominant-color=false
+click-action='minimize'
+scroll-action='cycle-windows'
 
 [org/gnome/desktop/interface]
 color-scheme='prefer-dark'
