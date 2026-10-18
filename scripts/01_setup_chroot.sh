@@ -47,6 +47,7 @@ apt-get install -y --no-install-recommends \
     ca-certificates \
     pciutils \
     usbutils \
+    zram-tools \
     macfanctld || true
 
 # Setup live user

@@ -114,4 +114,29 @@ cp -f "$BUILD_DIR/config/fastfetch/config.jsonc" /etc/fastfetch/config.jsonc
 echo "fastfetch" >> /home/rayos/.bashrc
 echo "fastfetch" >> /root/.bashrc
 
+# 10. RAM & Kernel Performance Optimizations (ZRAM, Swappiness, SSD TRIM)
+echo "Applying RAM & Performance Optimizations..."
+
+# Configure ZRAM (Zstandard Compressed RAM Swap - 50% of total RAM)
+cat << 'EOF' > /etc/default/zramswap
+# Ray OS ZRAM Configuration
+ALGO=zstd
+PERCENT=50
+PRIORITY=100
+EOF
+
+# Linux Kernel Virtual Memory Tuning for Smooth Multitasking
+mkdir -p /etc/sysctl.d
+cat << 'EOF' > /etc/sysctl.d/99-rayos-performance.conf
+# Ray OS Low-RAM & Performance Tuning
+vm.swappiness=10
+vm.vfs_cache_pressure=50
+vm.dirty_background_ratio=5
+vm.dirty_ratio=10
+vm.page-cluster=0
+EOF
+
+# Enable SSD TRIM timer for storage speed & longevity
+systemctl enable fstrim.timer 2>/dev/null || true
+
 echo "=== Step 3 Complete ==="
