@@ -1,0 +1,68 @@
+# Ray OS Glass Interface Default Configuration (dconf)
+
+[org/gnome/shell]
+enabled-extensions=['blur-my-shell@aunetx', 'dash-to-dock@micxgx.gmail.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'appindicatorsupport@rgcjonas.gmail.com']
+favorite-apps=['org.gnome.Nautilus.desktop', 'firefox-esr.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Settings.desktop', 'calamares.desktop']
+
+[org/gnome/shell/extensions/blur-my-shell]
+brightness=0.88
+sigma=32
+blur-dash=true
+blur-panel=true
+blur-overview=true
+blur-lockscreen=true
+appfolder-blur=true
+
+[org/gnome/shell/extensions/blur-my-shell/panel]
+blur=true
+brightness=0.85
+sigma=30
+override-background-and-borders=true
+
+[org/gnome/shell/extensions/blur-my-shell/dash-to-dock]
+blur=true
+brightness=0.80
+sigma=35
+override-background=true
+
+[org/gnome/shell/extensions/dash-to-dock]
+dock-position='BOTTOM'
+extend-height=false
+dock-fixed=false
+autohide=true
+intellihide=true
+transparency-mode='FIXED'
+background-opacity=0.30
+dash-max-icon-size=48
+show-mounts=false
+show-trash=true
+custom-theme-shrink=true
+
+[org/gnome/desktop/interface]
+color-scheme='prefer-dark'
+gtk-theme='Orchis-Dark'
+icon-theme='Tela-circle-dark'
+cursor-theme='Bibata-Modern-Classic'
+font-name='Inter 10.5'
+document-font-name='Inter 10.5'
+monospace-font-name='JetBrains Mono 10'
+clock-show-weekday=true
+clock-format='24h'
+
+[org/gnome/desktop/background]
+picture-uri='file:///usr/share/backgrounds/rayos/ray_glassmorphism.jpg'
+picture-uri-dark='file:///usr/share/backgrounds/rayos/ray_glassmorphism.jpg'
+picture-options='zoom'
+
+[org/gnome/desktop/screensaver]
+picture-uri='file:///usr/share/backgrounds/rayos/ray_glassmorphism.jpg'
+
+[org/gnome/desktop/wm/preferences]
+button-layout='appmenu:minimize,maximize,close'
+focus-mode='click'
+
+[org/gnome/mutter]
+center-new-windows=true
+dynamic-workspaces=true
+edge-tiling=true
+experimental-features=['scale-monitor-framebuffer']

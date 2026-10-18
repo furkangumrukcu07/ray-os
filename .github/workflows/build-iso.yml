@@ -1,0 +1,62 @@
+name: Build Ray OS ISO
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'README.md'
+
+jobs:
+  build:
+    name: Build Ray OS 1.0 (Lumina)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Free Disk Space on Runner
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+
+      - name: Execute Ray OS ISO Builder
+        run: |
+          chmod +x build_iso.sh scripts/*.sh
+          sudo ./build_iso.sh
+
+      - name: Upload ISO as Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: RayOS-1.0-Lumina-x86_64
+          path: output/RayOS-1.0-Lumina-x86_64.*
+          retention-days: 14
+
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch'
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            output/RayOS-1.0-Lumina-x86_64.iso
+            output/RayOS-1.0-Lumina-x86_64.iso.sha256
+          tag_name: v1.0.0
+          name: "Ray OS 1.0 Lumina (Frosted Glass Edition)"
+          body: |
+            ## Ray OS 1.0 Lumina
+            
+            Official Release of Ray OS - Debian 12 Bookworm Based with GNOME Frosted Glass Interface.
+            
+            ### Features
+            - **Desktop**: GNOME 43/44 with `blur-my-shell` real-time acrylic blur
+            - **Dock**: Floating translucent frosted glass dock (`dash-to-dock`)
+            - **Base**: Debian 12 (Bookworm) 64-bit + Non-Free Firmware
+            - **Theme**: Orchis Glass Dark + Tela Circle Icons + Inter & JetBrains Mono Fonts
+            - **Installer**: Calamares Graphical Live Installer
+            - **Bootloader**: Modern Glass GRUB + Plymouth glowing logo boot splash
+            - **Hardware Support**: Intel, AMD, Nvidia, Broadcom, Realtek Wi-Fi/Bluetooth
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

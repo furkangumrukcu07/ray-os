@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=Ray OS Splash
+Description=Sleek Frosted Glass Boot Splash for Ray OS
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/ray-splash
+ScriptFile=/usr/share/plymouth/themes/ray-splash/ray-splash.script

@@ -1,0 +1,54 @@
+# Ray OS Glass GRUB Theme
+
+title-text: ""
+desktop-image: "background.jpg"
+desktop-color: "#05070e"
+terminal-box: "terminal_box_*.png"
+terminal-font: "Unifont Regular 16"
+
+# Ray OS Logo Centered
++ image {
+    top = 15%
+    left = 50%-64
+    width = 128
+    height = 128
+    file = "logo.png"
+}
+
+# OS Title
++ label {
+    top = 32%
+    left = 0
+    width = 100%
+    align = "center"
+    text = "Ray OS 1.0 Lumina"
+    color = "#38bdf8"
+    font = "DejaVu Sans Bold 20"
+}
+
+# Boot Menu
++ boot_menu {
+    left = 32%
+    top = 44%
+    width = 36%
+    height = 35%
+    item_color = "#94a3b8"
+    selected_item_color = "#ffffff"
+    item_font = "DejaVu Sans Regular 16"
+    selected_item_font = "DejaVu Sans Bold 16"
+    item_height = 42
+    item_padding = 10
+    item_spacing = 8
+    selected_item_color = "#38bdf8"
+}
+
+# Countdown timeout message
++ label {
+    top = 85%
+    left = 0
+    width = 100%
+    align = "center"
+    text = "Starting automatically in %d seconds..."
+    color = "#64748b"
+    font = "DejaVu Sans Regular 14"
+}

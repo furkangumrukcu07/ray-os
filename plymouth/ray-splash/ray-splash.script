@@ -1,0 +1,48 @@
+# Ray OS Plymouth Boot Splash Script
+
+screen_width = Window.GetWidth();
+screen_height = Window.GetHeight();
+
+# Background
+Window.SetBackgroundTopColor(0.04, 0.05, 0.08);
+Window.SetBackgroundBottomColor(0.02, 0.03, 0.05);
+
+# Ray OS Logo
+logo.image = Image("ray_logo.png");
+logo_scaled = logo.image.Scale(180, 180);
+logo.sprite = Sprite(logo_scaled);
+logo.x = (screen_width / 2) - 90;
+logo.y = (screen_height / 2) - 130;
+logo.sprite.SetPosition(logo.x, logo.y, 100);
+logo.sprite.SetOpacity(1.0);
+
+# Progress dot animation
+dots = [];
+num_dots = 4;
+dot_size = 10;
+dot_spacing = 24;
+total_width = (num_dots - 1) * dot_spacing;
+start_x = (screen_width / 2) - (total_width / 2);
+start_y = (screen_height / 2) + 90;
+
+for (i = 0; i < num_dots; i++) {
+    dots[i].image = Image.Text("●", 0.0, 0.8, 1.0, 1.0, "Sans 14");
+    dots[i].sprite = Sprite(dots[i].image);
+    dots[i].sprite.SetPosition(start_x + (i * dot_spacing), start_y, 100);
+    dots[i].sprite.SetOpacity(0.3);
+}
+
+progress = 0;
+fun refresh_callback() {
+    progress++;
+    active_idx = Math.Int((progress / 15) % num_dots);
+    for (i = 0; i < num_dots; i++) {
+        if (i == active_idx) {
+            dots[i].sprite.SetOpacity(1.0);
+        } else {
+            dots[i].sprite.SetOpacity(0.3);
+        }
+    }
+}
+
+Plymouth.SetRefreshFunction(refresh_callback);
