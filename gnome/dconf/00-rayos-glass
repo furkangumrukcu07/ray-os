@@ -1,12 +1,15 @@
-# Ray OS Glass Interface Default Configuration (dconf)
+# Ray OS macOS Frosted Glass Default Configuration (dconf)
 
 [org/gnome/shell]
 enabled-extensions=['blur-my-shell@aunetx', 'dash-to-dock@micxgx.gmail.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'appindicatorsupport@rgcjonas.gmail.com']
-favorite-apps=['opera.desktop', 'org.gnome.Nautilus.desktop', 'vlc.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Settings.desktop', 'calamares.desktop']
+favorite-apps=['org.gnome.Software.desktop', 'opera.desktop', 'org.gnome.Nautilus.desktop', 'vlc.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Settings.desktop', 'calamares.desktop']
+
+[org/gnome/shell/extensions/user-theme]
+name='WhiteSur-Dark-glassy'
 
 [org/gnome/shell/extensions/blur-my-shell]
 brightness=0.88
-sigma=32
+sigma=35
 blur-dash=true
 blur-panel=true
 blur-overview=true
@@ -21,8 +24,8 @@ override-background-and-borders=true
 
 [org/gnome/shell/extensions/blur-my-shell/dash-to-dock]
 blur=true
-brightness=0.80
-sigma=35
+brightness=0.75
+sigma=40
 override-background=true
 
 [org/gnome/shell/extensions/dash-to-dock]
@@ -32,17 +35,20 @@ dock-fixed=false
 autohide=true
 intellihide=true
 transparency-mode='FIXED'
-background-opacity=0.30
-dash-max-icon-size=48
+background-opacity=0.22
+dash-max-icon-size=52
 show-mounts=false
 show-trash=true
+show-apps-at-top=true
 custom-theme-shrink=true
+running-indicator-style='DOTS'
+running-indicator-dominant-color=false
 
 [org/gnome/desktop/interface]
 color-scheme='prefer-dark'
-gtk-theme='Orchis-Dark'
-icon-theme='Tela-circle-dark'
-cursor-theme='Bibata-Modern-Classic'
+gtk-theme='WhiteSur-Dark-glassy'
+icon-theme='WhiteSur-dark'
+cursor-theme='WhiteSur-cursors'
 font-name='Inter 10.5'
 document-font-name='Inter 10.5'
 monospace-font-name='JetBrains Mono 10'
@@ -57,8 +63,9 @@ picture-options='zoom'
 [org/gnome/desktop/screensaver]
 picture-uri='file:///usr/share/backgrounds/rayos/ray_glassmorphism.jpg'
 
+# macOS Window Controls on LEFT (Red, Yellow, Green Traffic Lights)
 [org/gnome/desktop/wm/preferences]
-button-layout='appmenu:minimize,maximize,close'
+button-layout='close,minimize,maximize:'
 focus-mode='click'
 
 [org/gnome/mutter]

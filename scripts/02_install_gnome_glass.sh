@@ -24,6 +24,9 @@ apt-get install -y --no-install-recommends \
     gnome-disk-utility \
     vlc \
     transmission-gtk \
+    flatpak \
+    gnome-software \
+    gnome-software-plugin-flatpak \
     fonts-inter \
     fonts-jetbrains-mono \
     calamares \
@@ -33,6 +36,10 @@ apt-get install -y --no-install-recommends \
     plymouth \
     plymouth-themes \
     gpg
+
+# Setup Flathub Universal App Store Repository
+echo "Configuring Flathub repository..."
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo || true
 
 # Setup Official Opera Browser Repository & Install Latest Opera Stable
 echo "Adding Opera official repository..."
@@ -88,18 +95,25 @@ if [ -f dash-to-dock.zip ]; then
     unzip -q dash-to-dock.zip -d /usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/
 fi
 
-# Install Orchis Glass / Dark GTK theme
-echo "Installing Orchis Dark GTK Theme..."
-git clone --depth=1 https://github.com/vinceliuice/Orchis-theme.git
-cd Orchis-theme
-./install.sh -t default -c dark -s standard --round 5px || true
+# Install macOS WhiteSur Frosted Glass GTK & Shell Theme
+echo "Installing WhiteSur macOS Glass GTK & Shell Theme..."
+git clone --depth=1 https://github.com/vinceliuice/WhiteSur-gtk-theme.git
+cd WhiteSur-gtk-theme
+./install.sh -c Dark -t all -s standard -N glassy --round || true
 cd ..
 
-# Install Tela Circle Icon Theme
-echo "Installing Tela Circle Icon Theme..."
-git clone --depth=1 https://github.com/vinceliuice/Tela-circle-icon-theme.git
-cd Tela-circle-icon-theme
-./install.sh -c dark || true
+# Install macOS WhiteSur Icon Theme
+echo "Installing WhiteSur macOS Icon Theme..."
+git clone --depth=1 https://github.com/vinceliuice/WhiteSur-icon-theme.git
+cd WhiteSur-icon-theme
+./install.sh -a -b -t default || true
+cd ..
+
+# Install macOS WhiteSur Cursors
+echo "Installing WhiteSur Cursors..."
+git clone --depth=1 https://github.com/vinceliuice/WhiteSur-cursors.git
+cd WhiteSur-cursors
+./install.sh || true
 cd ..
 
 # Clean up temporary build artifacts

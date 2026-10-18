@@ -47,9 +47,11 @@ GRUB_THEME="/boot/grub/themes/ray-glass/theme.txt"
 GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
 EOF
 
-# 6. Calamares Installer Branding
+# 6. Calamares Installer Branding & Multi-Language Modules
 mkdir -p /etc/calamares/branding/rayos
+mkdir -p /etc/calamares/modules
 cp -rf "$BUILD_DIR/calamares/branding/rayos/"* /etc/calamares/branding/rayos/
+cp -rf "$BUILD_DIR/calamares/modules/"* /etc/calamares/modules/
 cp -f "$BUILD_DIR/calamares/settings.conf" /etc/calamares/settings.conf
 
 # 7. GNOME dconf Glass Defaults
