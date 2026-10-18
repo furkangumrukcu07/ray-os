@@ -32,6 +32,30 @@ cp -f "$BUILD_DIR/assets/logo/ray_logo_256.png" /usr/share/icons/hicolor/256x256
 cp -f "$BUILD_DIR/assets/logo/ray_logo_128.png" /usr/share/icons/hicolor/128x128/apps/ray-os-logo.png
 cp -f "$BUILD_DIR/assets/logo/ray_logo_128.png" /usr/share/pixmaps/ray-os-logo.png
 
+# Ray App Store Custom Icons & Desktop Entry
+cp -f "$BUILD_DIR/assets/logo/ray_store_512.png" /usr/share/icons/hicolor/512x512/apps/ray-store.png
+cp -f "$BUILD_DIR/assets/logo/ray_store_256.png" /usr/share/icons/hicolor/256x256/apps/ray-store.png
+cp -f "$BUILD_DIR/assets/logo/ray_store_128.png" /usr/share/icons/hicolor/128x128/apps/ray-store.png
+
+mkdir -p /usr/share/applications
+cat << 'EOF' > /usr/share/applications/ray-store.desktop
+[Desktop Entry]
+Type=Application
+Name=Ray App Store
+Name[tr]=Ray Uygulama Mağazası
+GenericName=App Store
+GenericName[tr]=Evrensel Uygulama Mağazası
+Comment=Discover and install thousands of applications for Ray OS
+Comment[tr]=Ray OS için binlerce uygulamayı tek tıkla keşfedin ve yükleyin
+Icon=ray-store
+Exec=gnome-software %U
+Terminal=false
+Categories=GNOME;GTK;System;PackageManager;
+StartupNotify=true
+MimeType=x-scheme-handler/appstream;x-scheme-handler/apt;
+EOF
+chmod 644 /usr/share/applications/ray-store.desktop
+
 # 4. Plymouth Splash Theme
 mkdir -p /usr/share/plymouth/themes/ray-splash
 cp -rf "$BUILD_DIR/plymouth/ray-splash/"* /usr/share/plymouth/themes/ray-splash/

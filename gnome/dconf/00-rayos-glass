@@ -2,7 +2,7 @@
 
 [org/gnome/shell]
 enabled-extensions=['blur-my-shell@aunetx', 'dash-to-dock@micxgx.gmail.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'appindicatorsupport@rgcjonas.gmail.com']
-favorite-apps=['org.gnome.Software.desktop', 'opera.desktop', 'org.gnome.Nautilus.desktop', 'vlc.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Settings.desktop', 'calamares.desktop']
+favorite-apps=['ray-store.desktop', 'opera.desktop', 'org.gnome.Nautilus.desktop', 'vlc.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Settings.desktop', 'calamares.desktop']
 
 [org/gnome/shell/extensions/user-theme]
 name='WhiteSur-Dark-glassy'
