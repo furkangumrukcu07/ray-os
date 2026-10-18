@@ -37,7 +37,7 @@ jobs:
           retention-days: 14
 
       - name: Create GitHub Release
-        if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch'
+        if: success()
         uses: softprops/action-gh-release@v1
         with:
           files: |

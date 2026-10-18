@@ -85,11 +85,26 @@ cp "$initrd" "$IMAGE_DIR/live/initrd.img"
 echo "[+] Step 6: Cleaning chroot cache..."
 chroot "$CHROOT_DIR" apt-get clean
 chroot "$CHROOT_DIR" rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
-umount -lf "$CHROOT_DIR/builder"
+
+# Unmount all virtual filesystems so mksquashfs doesn't hang on /proc/kcore or device streams!
+echo "[+] Step 6.5: Unmounting all chroot virtual mounts..."
+umount -lf "$CHROOT_DIR/dev/pts" 2>/dev/null || true
+umount -lf "$CHROOT_DIR/dev" 2>/dev/null || true
+umount -lf "$CHROOT_DIR/proc" 2>/dev/null || true
+umount -lf "$CHROOT_DIR/sys" 2>/dev/null || true
+umount -lf "$CHROOT_DIR/builder" 2>/dev/null || true
 
 # 8. Create SquashFS Filesystem
-echo "[+] Step 7: Compressing system into SquashFS (XZ high compression)..."
-mksquashfs "$CHROOT_DIR" "$IMAGE_DIR/live/filesystem.squashfs" -comp xz -b 1048576 -noappend
+echo "[+] Step 7: Compressing system into SquashFS (Zstandard fast compression)..."
+mksquashfs "$CHROOT_DIR" "$IMAGE_DIR/live/filesystem.squashfs" \
+    -comp zstd -b 1048576 -noappend \
+    -wildcards \
+    -e "proc/*" \
+    -e "sys/*" \
+    -e "dev/*" \
+    -e "tmp/*" \
+    -e "var/tmp/*" \
+    -e "builder/*"
 
 # 9. Configure GRUB Bootloader for Live Boot
 echo "[+] Step 8: Configuring UEFI & BIOS GRUB menus..."

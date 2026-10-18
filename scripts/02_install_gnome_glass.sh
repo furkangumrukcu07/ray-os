@@ -99,14 +99,14 @@ fi
 echo "Installing WhiteSur macOS Glass GTK & Shell Theme..."
 git clone --depth=1 https://github.com/vinceliuice/WhiteSur-gtk-theme.git
 cd WhiteSur-gtk-theme
-./install.sh -c Dark -t all -s standard -N glassy --round || true
+./install.sh -c Dark -s standard -N glassy --round || true
 cd ..
 
 # Install macOS WhiteSur Icon Theme
 echo "Installing WhiteSur macOS Icon Theme..."
 git clone --depth=1 https://github.com/vinceliuice/WhiteSur-icon-theme.git
 cd WhiteSur-icon-theme
-./install.sh -a -b -t default || true
+./install.sh -c dark -t default || true
 cd ..
 
 # Install macOS WhiteSur Cursors
